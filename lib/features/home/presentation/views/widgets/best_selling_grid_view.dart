@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/widgets/fruit _tem.dart';
+import '../../../../../core/widgets/featured _tem.dart';
 
 class BestSellingGridView extends StatelessWidget {
   const BestSellingGridView({super.key});
@@ -9,12 +9,12 @@ class BestSellingGridView extends StatelessWidget {
     return SliverGrid.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 163/325,
+        childAspectRatio: 163/340,
         mainAxisSpacing: 8,
         crossAxisSpacing: 18,
       ),
       itemBuilder: (context, index) {
-        return FruitItem();
+        return FeaturedItem();
       },
     );
   }

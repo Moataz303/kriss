@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import '../../../../../constants.dart';
-import '../../../../../core/widgets/featured _tem.dart';
+import '../../../../../core/widgets/custom_app_bar.dart';
+import '../../../../../core/widgets/notification_widget.dart';
 import '../../../../../core/widgets/search_text_field.dart';
 import 'Best_selling_header.dart';
 import 'best_selling_grid_view.dart';
-import 'custom_home_app_ber.dart';
-import 'featured_item.dart';
-import 'featured_list.dart';
+import 'products_view_header.dart';
 
-class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
+class ProductsViewBody extends StatefulWidget {
+  const ProductsViewBody({super.key});
 
   @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
+  State<ProductsViewBody> createState() => _ProductsViewBodyState();
 }
 
-class _HomeViewBodyState extends State<HomeViewBody> {
+class _ProductsViewBodyState extends State<ProductsViewBody> {
   final TextEditingController _searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,13 +26,19 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             child: Column(
               children: [
                 SizedBox(height: kTopPadding),
-                CustomHomeAppBer(),
+                buildAppBar(
+                  context,
+                  title: "المنتجات",
+                  showBack: false,
+                  actions: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: NotificationWidget(),
+                  ),
+                ),
                 SizedBox(height: kTopPadding),
                 SearchTextField(controller: _searchController),
                 SizedBox(height: 12),
-                FeaturedList(),
-                SizedBox(height: 12),
-                BestSellingHeader(),
+                ProductsViewHeader(),
                 SizedBox(height: 8),
               ],
             ),

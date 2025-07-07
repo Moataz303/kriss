@@ -12,7 +12,14 @@ class SignupView extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: Scaffold(
-        appBar: buildAppBar(context, title: 'حساب جديد'),
+        appBar: buildAppBar(
+          context,
+          title: 'حساب جديد',
+          leading: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(Icons.arrow_back_ios_new),
+          ),
+        ),
         body: SignupViewBody(),
       ),
     );

@@ -10,7 +10,10 @@ class ForgotPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'نسيان كلمة المرور'),
+      appBar: buildAppBar(context, title: 'نسيان كلمة المرور',leading: GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: Icon(Icons.arrow_back_ios_new),
+      ),),
       body: ForgotPasswordViewBody(),
     );
   }

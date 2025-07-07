@@ -16,6 +16,10 @@ class BestSellingView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: NotificationWidget(),
         ),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios_new),
+        ),
       ),
       body: BestSellingViewBody(),
     );

@@ -3,8 +3,8 @@ import '../utils/app_colors.dart';
 import '../utils/app_images.dart';
 import '../utils/app_text_styles.dart';
 
-class FruitItem extends StatelessWidget {
-  const FruitItem({super.key});
+class FeaturedItem extends StatelessWidget {
+  const FeaturedItem({super.key});
 
   @override
   Widget build(BuildContext context) {
