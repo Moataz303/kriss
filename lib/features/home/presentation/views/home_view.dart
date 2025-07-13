@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kriss/features/home/presentation/views/products_view.dart';
-
 import '../../../auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import '../../../auth/presentation/cubits/auth_cubit/auth_state.dart';
 import 'cart_view.dart';

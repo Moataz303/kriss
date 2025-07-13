@@ -3,6 +3,7 @@ import '../../../../../constants.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/notification_widget.dart';
 import '../../../../../core/widgets/search_text_field.dart';
+import '../notification_view.dart';
 import 'products_category_list.dart';
 import 'products_grid_view.dart';
 import 'products_view_header.dart';
@@ -32,7 +33,15 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                   showBack: false,
                   actions: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: NotificationWidget(),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          NotificationView.routeName,
+                        );
+                      },
+                      child: NotificationWidget(),
+                    ),
                   ),
                 ),
                 SizedBox(height: kTopPadding),

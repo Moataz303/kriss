@@ -7,3 +7,9 @@ final class ChangePasswordVisibilityState extends AuthStates {}
 final class ChangeCheckBoxState extends AuthStates {}
 
 final class ChangeNavigationBarState extends AuthStates {}
+
+final class IncrementQuantityState extends AuthStates {}
+
+final class DecrementQuantityState extends AuthStates {}
+
+final class FilterBottomState extends AuthStates {}

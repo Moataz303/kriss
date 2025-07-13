@@ -3,11 +3,14 @@ import 'custom_email_verification_code.dart';
 
 class EmailVerificationCode extends StatelessWidget {
   const EmailVerificationCode({
-    super.key, required this.firstFocusNode, this.secondFocusNode, required this.controller,
+    super.key,
+    required this.firstFocusNode,
+    this.secondFocusNode,
+    required this.controller,
   });
   final FocusNode firstFocusNode;
   final FocusNode? secondFocusNode;
-  final TextEditingController controller ;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Expanded(

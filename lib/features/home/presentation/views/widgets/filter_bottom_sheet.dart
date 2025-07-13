@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../auth/presentation/cubits/auth_cubit/auth_cubit.dart';
+import '../../../../auth/presentation/cubits/auth_cubit/auth_state.dart';
 
-class FilterBottomSheet extends StatefulWidget {
+class FilterBottomSheet extends StatelessWidget {
   const FilterBottomSheet({super.key});
 
-  @override
-  State<FilterBottomSheet> createState() => _FilterBottomSheetState();
-}
-
-class _FilterBottomSheetState extends State<FilterBottomSheet> {
-  String? selectedOption;
-
-  final List<String> options = [
-    'السعر ( الأقل الي الأعلى )',
-    'السعر ( الأعلى الي الأقل )',
+  final List<String> options = const [
+    'السعر ( الأقل الى الأعلى )',
+    'السعر ( الأعلى الى الأقل )',
   ];
 
   @override
@@ -38,34 +33,45 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 height: 2,
                 margin: const EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
-                  color: Color(0xFF131f46),
+                  color: const Color(0xFF131f46),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
             ),
-            Text(textAlign: TextAlign.right,
-                'ترتيب حسب :',
-                style: TextStyles.bold16
+            Text(
+              'ترتيب حسب :',
+              textAlign: TextAlign.right,
+              style: TextStyles.bold16,
             ),
             const SizedBox(height: 12),
-            ...options.map((option) {
-              return RadioListTile<String>(
-                value: option,
-                activeColor: AppColors.primaryColor,
-                groupValue: selectedOption,
-                onChanged: (value) {
-                  setState(() {
-                    selectedOption = value;
-                  });
-                },
-                title: Text(
-                  option,
-                  textAlign: TextAlign.right,
-                  style:  TextStyles.bold13,
-                ),
-                contentPadding: EdgeInsets.zero,
-              );
-            }).toList(),
+
+            BlocBuilder<AuthCubit, AuthStates>(
+              builder: (context, state) {
+                final selectedOption = AuthCubit.get(
+                  context,
+                ).selectedFilterOption;
+
+                return Column(
+                  children: options.map((option) {
+                    return RadioListTile<String>(
+                      value: option,
+                      activeColor: AppColors.primaryColor,
+                      groupValue: selectedOption,
+                      onChanged: (value) {
+                        AuthCubit.get(context).filterBottom(value);
+                      },
+                      title: Text(
+                        option,
+                        textAlign: TextAlign.right,
+                        style: TextStyles.bold13,
+                      ),
+                      contentPadding: EdgeInsets.zero,
+                    );
+                  }).toList(),
+                );
+              },
+            ),
+
             const SizedBox(height: 12),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -78,7 +84,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child:  Text(
+              child: Text(
                 'تصفيه',
                 style: TextStyles.bold16.copyWith(color: Colors.white),
               ),

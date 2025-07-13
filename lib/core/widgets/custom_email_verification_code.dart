@@ -41,7 +41,6 @@ class CustomEmailVerificationCode extends StatelessWidget {
           } else if (focusNode != null) {
             focusNode!.unfocus();
           }
-
         }
       },
       onChanged: (value) {
@@ -51,7 +50,6 @@ class CustomEmailVerificationCode extends StatelessWidget {
           } else if (focusNode != null) {
             focusNode!.unfocus();
           }
-
         }
         controller.selection = TextSelection(
           baseOffset: 0,

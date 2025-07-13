@@ -11,7 +11,6 @@ import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../home/presentation/views/home_view.dart';
 import '../../cubits/auth_cubit/auth_cubit.dart';
 import '../../cubits/auth_cubit/auth_state.dart';
-
 import '../forgot_password_view.dart';
 import 'dont_have_an_account_widget.dart';
 import 'or_divider.dart';

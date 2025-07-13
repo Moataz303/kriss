@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../../core/widgets/notification_widget.dart';
+import '../../home/presentation/views/notification_view.dart';
 import 'widgets/best_selling_view_body.dart';
 
 class BestSellingView extends StatelessWidget {
@@ -14,7 +15,12 @@ class BestSellingView extends StatelessWidget {
         title: 'الأكثر مبيعاً',
         actions: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: NotificationWidget(),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, NotificationView.routeName);
+            },
+            child: NotificationWidget(),
+          ),
         ),
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),

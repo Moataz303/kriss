@@ -9,7 +9,7 @@ class FeaturedItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var itemWidth = MediaQuery.sizeOf(context).width-32;
+    var itemWidth = MediaQuery.sizeOf(context).width - 32;
     return ClipRRect(
       borderRadius: BorderRadius.circular(4),
       child: SizedBox(

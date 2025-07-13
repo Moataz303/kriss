@@ -8,10 +8,14 @@ class PasswordRecoveryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'التحقق من الرمز',leading: GestureDetector(
-        onTap: () => Navigator.pop(context),
-        child: Icon(Icons.arrow_back_ios_new),
-      ),),
+      appBar: buildAppBar(
+        context,
+        title: 'التحقق من الرمز',
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(Icons.arrow_back_ios_new),
+        ),
+      ),
       body: PasswordRecoveryViewBody(),
     );
   }

@@ -6,6 +6,7 @@ import '../../features/auth/presentation/views/reset_your_password_view.dart';
 import '../../features/auth/presentation/views/signup_view.dart';
 import '../../features/best_selling_clothes/views/best_selling_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
+import '../../features/home/presentation/views/notification_view.dart';
 import '../../features/on_boarding/presentation/views/on_boarding_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 import '../widgets/navigate_to_page_widget.dart';
@@ -30,6 +31,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return NavigateToPageWidget(const HomeView());
     case BestSellingView.routeName:
       return NavigateToPageWidget(const BestSellingView());
+    case NotificationView.routeName:
+      return NavigateToPageWidget(const NotificationView());
     default:
       return NavigateToPageWidget(const Scaffold());
   }

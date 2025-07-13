@@ -1,30 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../auth/presentation/cubits/auth_cubit/auth_cubit.dart';
+import '../../../../auth/presentation/cubits/auth_cubit/auth_state.dart';
 
-class CartItemActionButtons extends StatefulWidget {
-  const CartItemActionButtons({super.key});
+class CartItemActionButtons extends StatelessWidget {
+  const CartItemActionButtons({super.key, required this.itemId});
 
-  @override
-  State<CartItemActionButtons> createState() => _CartItemActionButtonsState();
-}
-
-class _CartItemActionButtonsState extends State<CartItemActionButtons> {
-  int quantity = 0;
-
-  void _increment() {
-    setState(() {
-      quantity++;
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      if (quantity > 0) quantity--;
-    });
-  }
+  final int itemId;
 
   @override
   Widget build(BuildContext context) {
@@ -33,22 +19,31 @@ class _CartItemActionButtonsState extends State<CartItemActionButtons> {
         CartItemActionButton(
           icon: Icons.add,
           color: AppColors.addColor,
-          onPressed: _increment,
+          onPressed: () {
+            AuthCubit.get(context).increment(itemId);
+          },
           iconColor: Colors.white,
         ),
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-          child: Text(
-            NumberFormat.decimalPattern('ar_EG').format(quantity),
-            style: TextStyles.bold16,
+          child: BlocBuilder<AuthCubit, AuthStates>(
+            builder: (context, state) {
+              final quantity = AuthCubit.get(context).getQuantity(itemId);
+              return Text(
+                NumberFormat.decimalPattern('ar_EG').format(quantity),
+                style: TextStyles.bold16,
+              );
+            },
           ),
         ),
 
         CartItemActionButton(
           icon: Icons.remove,
           color: Color(0xFFF3F5F7),
-          onPressed: _decrement,
+          onPressed: () {
+            AuthCubit.get(context).decrement(itemId);
+          },
           iconColor: Colors.grey,
         ),
       ],

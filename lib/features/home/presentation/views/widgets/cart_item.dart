@@ -42,7 +42,7 @@ class CartItem extends StatelessWidget {
                 Spacer(),
                 Row(
                   children: [
-                    CartItemActionButtons(),
+                    CartItemActionButtons(itemId: 1),
                     Spacer(),
                     Text(
                       '500 جنية',

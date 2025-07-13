@@ -70,4 +70,6 @@ class Assets {
 
   static const String imagesOutlineUser =
       "assets/images/vuesax/outline/user.svg";
+
+  static const String imagesSale = "assets/images/sale.png";
 }

@@ -21,7 +21,8 @@ class _ResetYourPasswordViewBodyState extends State<ResetYourPasswordViewBody> {
   bool isVisibil = false;
   bool isConfirmVisibil = false;
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(

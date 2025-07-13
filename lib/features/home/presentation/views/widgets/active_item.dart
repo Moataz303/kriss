@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
@@ -14,7 +13,9 @@ class ActiveItem extends StatelessWidget {
         padding: const EdgeInsets.only(left: 16),
         decoration: ShapeDecoration(
           color: Color(0xFFEEEEEE),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

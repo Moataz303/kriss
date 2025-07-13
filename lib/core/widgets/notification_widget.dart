@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../utils/app_images.dart';
 
 class NotificationWidget extends StatelessWidget {

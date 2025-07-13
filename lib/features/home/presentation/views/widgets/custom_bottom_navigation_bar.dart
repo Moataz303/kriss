@@ -8,7 +8,6 @@ import 'navigation_bar_item.dart';
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     final authCubit = context.watch<AuthCubit>();

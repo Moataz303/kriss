@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/notification_widget.dart';
+import '../notification_view.dart';
 
 class CustomHomeAppBer extends StatelessWidget {
   const CustomHomeAppBer({super.key});
@@ -11,7 +11,12 @@ class CustomHomeAppBer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      trailing: NotificationWidget(),
+      trailing: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, NotificationView.routeName);
+        },
+        child: NotificationWidget(),
+      ),
       leading: Image.asset(Assets.imagesProfileImage),
       title: Text(
         'صباح الخير..!',
