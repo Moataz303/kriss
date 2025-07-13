@@ -4,6 +4,7 @@ import 'package:kriss/features/home/presentation/views/products_view.dart';
 
 import '../../../auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import '../../../auth/presentation/cubits/auth_cubit/auth_state.dart';
+import 'cart_view.dart';
 import 'widgets/custom_bottom_navigation_bar.dart';
 import 'widgets/home_view_body.dart';
 
@@ -14,7 +15,7 @@ class HomeView extends StatelessWidget {
   final List<Widget> screens = const [
     HomeViewBody(),
     ProductsView(),
-    Center(child: Text('السلة')),
+    CartView(),
     Center(child: Text('حسابي')),
   ];
 

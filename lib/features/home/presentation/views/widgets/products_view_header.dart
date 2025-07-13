@@ -4,6 +4,7 @@ import '../../../../../constants.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import 'filter_bottom_sheet.dart';
 
 class ProductsViewHeader extends StatelessWidget {
   const ProductsViewHeader({super.key});
@@ -14,16 +15,25 @@ class ProductsViewHeader extends StatelessWidget {
       children: [
         Text('٨ نتائج', textAlign: TextAlign.right, style: TextStyles.bold16),
         Spacer(),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          decoration: ShapeDecoration(
-            color: Colors.white.withOpacity(0.10000000149011612),
-            shape: RoundedRectangleBorder(
-              side: BorderSide(width: 1, color: Color(0x66CACECE)),
-              borderRadius: BorderRadius.circular(8),
-            ),
+        GestureDetector(onTap: () {showModalBottomSheet(
+          context: context,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
           ),
-          child: SvgPicture.asset(Assets.imagesFilter2),
+          isScrollControlled: true,
+          builder: (context) => const FilterBottomSheet(),
+        );},
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: ShapeDecoration(
+              color: Colors.white.withOpacity(0.10000000149011612),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(width: 1, color: Color(0x66CACECE)),
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            child: SvgPicture.asset(Assets.imagesFilter2),
+          ),
         ),
       ],
     );

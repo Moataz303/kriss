@@ -38,18 +38,20 @@ class CustomEmailVerificationCode extends StatelessWidget {
         } else {
           if (nextFocusNode != null) {
             nextFocusNode!.requestFocus();
-          } else {
-            if (focusNode != null) {
-              focusNode?.unfocus();
-            }
+          } else if (focusNode != null) {
+            focusNode!.unfocus();
           }
+
         }
       },
       onChanged: (value) {
         if (maxLength != null && maxLength == value.length) {
           if (nextFocusNode != null) {
             nextFocusNode!.requestFocus();
+          } else if (focusNode != null) {
+            focusNode!.unfocus();
           }
+
         }
         controller.selection = TextSelection(
           baseOffset: 0,

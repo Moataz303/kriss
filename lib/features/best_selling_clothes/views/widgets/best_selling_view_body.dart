@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
 import '../../../../core/utils/app_text_styles.dart';
-import '../../../home/presentation/views/widgets/best_selling_grid_view.dart';
+import '../../../home/presentation/views/widgets/products_grid_view.dart';
 
 class BestSellingViewBody extends StatelessWidget {
   const BestSellingViewBody({super.key});
@@ -29,7 +29,7 @@ class BestSellingViewBody extends StatelessWidget {
               ],
             ),
           ),
-          BestSellingGridView(),
+          ProductsGridView(),
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../../../constants.dart';
@@ -25,6 +26,44 @@ class _PasswordRecoveryViewBodyState extends State<PasswordRecoveryViewBody> {
   final TextEditingController _secondController = TextEditingController();
   final TextEditingController _thirdController = TextEditingController();
   final TextEditingController _fourthController = TextEditingController();
+
+  int _start = 60;
+  bool _canResend = false;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    setState(() {
+      _start = 60;
+      _canResend = false;
+    });
+
+    _timer?.cancel();
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_start == 0) {
+        setState(() {
+          _canResend = true;
+        });
+        timer.cancel();
+      } else {
+        setState(() {
+          _start--;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +103,10 @@ class _PasswordRecoveryViewBodyState extends State<PasswordRecoveryViewBody> {
                   firstFocusNode: _thirdFocusNode,
                   secondFocusNode: _fourthFocusNode,
                 ),
-                EmailVerificationCode(controller: _fourthController, firstFocusNode: _fourthFocusNode),
+                EmailVerificationCode(
+                  controller: _fourthController,
+                  firstFocusNode: _fourthFocusNode,
+                ),
               ],
             ),
           ),
@@ -72,7 +114,7 @@ class _PasswordRecoveryViewBodyState extends State<PasswordRecoveryViewBody> {
 
           CustomButton(
             onPressed: () {
-               Navigator.pushNamed(context, ResetYourPasswordView.routeName);
+              Navigator.pushNamed(context, ResetYourPasswordView.routeName);
             },
             text: 'تحقق من الرمز',
           ),
@@ -81,13 +123,29 @@ class _PasswordRecoveryViewBodyState extends State<PasswordRecoveryViewBody> {
           Text.rich(
             TextSpan(
               children: [
-                TextSpan(
-                  recognizer: TapGestureRecognizer()..onTap = () {},
-                  text: 'إعادة ارسال الرمز',
-                  style: TextStyles.semiBold16.copyWith(
-                    color: AppColors.primaryColor,
+                if (_canResend)
+                  TextSpan(
+                    text: 'إعادة ارسال الرمز',
+                    style: TextStyles.semiBold16.copyWith(
+                      color: AppColors.primaryColor,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        _startTimer();
+                      },
+                  )
+                else ...[
+                  TextSpan(
+                    text: 'إعادة ارسال الرمز في ',
+                    style: TextStyles.semiBold16.copyWith(
+                      color: AppColors.primaryColor,
+                    ),
                   ),
-                ),
+                  TextSpan(
+                    text: '$_start ثانية',
+                    style: TextStyles.semiBold16.copyWith(color: Colors.grey),
+                  ),
+                ],
               ],
             ),
           ),

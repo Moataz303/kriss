@@ -50,7 +50,7 @@ class Kriss extends StatelessWidget {
           },
         ),
         supportedLocales: S.delegate.supportedLocales,
-        locale: const Locale('ar'),
+        locale: const Locale('ar','EG'),
         onGenerateRoute: onGenerateRoute,
         initialRoute: SplashView.routeName,
       ),

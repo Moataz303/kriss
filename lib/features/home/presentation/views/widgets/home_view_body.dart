@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../../../constants.dart';
-import '../../../../../core/widgets/featured _tem.dart';
 import '../../../../../core/widgets/search_text_field.dart';
 import 'Best_selling_header.dart';
-import 'best_selling_grid_view.dart';
 import 'custom_home_app_ber.dart';
-import 'featured_item.dart';
 import 'featured_list.dart';
+import 'products_grid_view.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -39,7 +37,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               ],
             ),
           ),
-          BestSellingGridView(),
+          ProductsGridView(),
         ],
       ),
     );

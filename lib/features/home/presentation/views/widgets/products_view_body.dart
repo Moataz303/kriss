@@ -3,8 +3,8 @@ import '../../../../../constants.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/notification_widget.dart';
 import '../../../../../core/widgets/search_text_field.dart';
-import 'Best_selling_header.dart';
-import 'best_selling_grid_view.dart';
+import 'products_category_list.dart';
+import 'products_grid_view.dart';
 import 'products_view_header.dart';
 
 class ProductsViewBody extends StatefulWidget {
@@ -38,12 +38,13 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                 SizedBox(height: kTopPadding),
                 SearchTextField(controller: _searchController),
                 SizedBox(height: 12),
+                ProductsCategoryList(),
                 ProductsViewHeader(),
                 SizedBox(height: 8),
               ],
             ),
           ),
-          BestSellingGridView(),
+          ProductsGridView(),
         ],
       ),
     );
