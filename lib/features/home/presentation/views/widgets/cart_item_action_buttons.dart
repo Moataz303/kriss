@@ -6,6 +6,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import '../../../../auth/presentation/cubits/auth_cubit/auth_state.dart';
+import 'cart_items_list.dart';
 
 class CartItemActionButtons extends StatelessWidget {
   const CartItemActionButtons({super.key, required this.itemId});
@@ -29,7 +30,7 @@ class CartItemActionButtons extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
           child: BlocBuilder<AuthCubit, AuthStates>(
             builder: (context, state) {
-              final quantity = AuthCubit.get(context).getQuantity(itemId);
+              final quantity = cartItems.where((item) => item.itemCode == itemId).first.qty ?? 0;
               return Text(
                 NumberFormat.decimalPattern('ar_EG').format(quantity),
                 style: TextStyles.bold16,

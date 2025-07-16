@@ -30,6 +30,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   final TextEditingController _passwordController = TextEditingController();
 
   final AuthCubit _signupCubit = getIt<AuthCubit>();
+
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

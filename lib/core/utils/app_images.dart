@@ -72,4 +72,8 @@ class Assets {
       "assets/images/vuesax/outline/user.svg";
 
   static const String imagesSale = "assets/images/sale.png";
+
+  static const String imagesPantalonJeansTest = "assets/images/pantalon_jeans_test.png";
+
+  static const String imagesJacketTest = "assets/images/jacket_test.png";
 }

@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/email_verification_code.dart';
+import '../../cubits/auth_cubit/auth_cubit.dart';
+import '../../cubits/auth_cubit/auth_state.dart';
 import '../reset_your_password_view.dart';
 
 class PasswordRecoveryViewBody extends StatefulWidget {
@@ -44,24 +47,20 @@ class _PasswordRecoveryViewBodyState extends State<PasswordRecoveryViewBody> {
   }
 
   void _startTimer() {
-    setState(() {
-      _start = 60;
-      _canResend = false;
-    });
+    _start = 60;
+    _canResend = false;
+    context.read<AuthCubit>().changeTime();
 
     _timer?.cancel();
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_start == 0) {
-        setState(() {
-          _canResend = true;
-        });
+        _canResend = true;
         timer.cancel();
       } else {
-        setState(() {
-          _start--;
-        });
+        _start--;
       }
+      context.read<AuthCubit>().changeTime();
     });
   }
 
@@ -120,34 +119,41 @@ class _PasswordRecoveryViewBodyState extends State<PasswordRecoveryViewBody> {
           ),
           const SizedBox(height: 16),
 
-          Text.rich(
-            TextSpan(
-              children: [
-                if (_canResend)
-                  TextSpan(
-                    text: 'إعادة ارسال الرمز',
-                    style: TextStyles.semiBold16.copyWith(
-                      color: AppColors.primaryColor,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        _startTimer();
-                      },
-                  )
-                else ...[
-                  TextSpan(
-                    text: 'إعادة ارسال الرمز في ',
-                    style: TextStyles.semiBold16.copyWith(
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                  TextSpan(
-                    text: '$_start ثانية',
-                    style: TextStyles.semiBold16.copyWith(color: Colors.grey),
-                  ),
-                ],
-              ],
-            ),
+          BlocBuilder<AuthCubit, AuthStates>(
+            buildWhen: (previous, current) => current is ChangeTimeState,
+            builder: (context, state) {
+              return Text.rich(
+                TextSpan(
+                  children: [
+                    if (_canResend)
+                      TextSpan(
+                        text: 'إعادة ارسال الرمز',
+                        style: TextStyles.semiBold16.copyWith(
+                          color: AppColors.primaryColor,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            _startTimer();
+                          },
+                      )
+                    else ...[
+                      TextSpan(
+                        text: 'إعادة ارسال الرمز في ',
+                        style: TextStyles.semiBold16.copyWith(
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '$_start ثانية',
+                        style: TextStyles.semiBold16.copyWith(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              );
+            },
           ),
         ],
       ),

@@ -13,3 +13,7 @@ final class IncrementQuantityState extends AuthStates {}
 final class DecrementQuantityState extends AuthStates {}
 
 final class FilterBottomState extends AuthStates {}
+
+final class ChangeTimeState extends AuthStates {}
+
+final class CartItemsCountState extends AuthStates {}

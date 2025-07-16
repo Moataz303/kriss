@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-
+import '../../../../constants.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/notification_widget.dart';
+import 'widgets/notification_list.dart';
 import 'widgets/notification_view_body.dart';
 
 class NotificationView extends StatelessWidget {
@@ -13,7 +16,7 @@ class NotificationView extends StatelessWidget {
       appBar: buildAppBar(
         context,
         actions: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
           child: NotificationWidget(),
         ),
         title: 'الاشعارات',
@@ -22,7 +25,27 @@ class NotificationView extends StatelessWidget {
           child: Icon(Icons.arrow_back_ios_new),
         ),
       ),
-      body: NotificationViewBody(),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: SizedBox(height: kHorizontalPadding)),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: kHorizontalPadding,
+              ),
+              child: Text(
+                "تحديد الكل مقروء",
+                style: TextStyles.semiBold16.copyWith(
+                  color: AppColors.hintTextColor,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(child: SizedBox(height: 22)),
+          NotificationList(),
+          SliverToBoxAdapter(child: SizedBox(height: 22)),
+        ],
+      ),
     );
   }
 }
